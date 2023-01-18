@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    padding: 150px;
+    text-align: center;
+    background: #001aff;
+    color: #fff;
+    border-bottom:30px #001aff;
+  }
+
+  /* coding quiz header */
+  .large-font {
+    font-size: 3.5em;
+    text-align:center;
+  }
+
+  /* styling for start button */
+  button {
+    background: radial-gradient(circle, rgb(41, 252, 252) 0%, rgba(59, 95, 255, 0.954) 100%);
+    border-radius: 8px;
+    color: #13293d;
+    cursor: pointer;
+    font-size: 2em;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    max-width: 255px;
+    padding: 20px 52px;
+    text-align: center;
+    transition-duration: 0.15s;
+    transition-property: background-color;
+    transition-timing-function: linear;
+    margin-top: 0.6em;
+  }
+
+  /* styling for coding rules list */
+  .code-rules {
+    text-align: center;
+    list-style-position: inside;
+  }
