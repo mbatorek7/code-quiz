@@ -3,7 +3,7 @@
 }
 
 header {
-    padding: 150px;
+    padding: 25px;
     text-align: center;
     background: #001aff;
     color: #fff;
@@ -41,19 +41,18 @@ header {
   }
 
   .timer {
-    height: 240px;
-    padding: 10px;
+    height: 150px;
     background: #13293d;
     color: #fff;
     text-align: center;
   }
   
   .timer-text {
-    padding: 55px;
+    padding: 20px;
   }
 
 
-  @media screen and (max-width: 504px) {
+  /* @media screen and (max-width: 504px) {
     .large-font {
       font-size: 2em;
     }
@@ -61,4 +60,4 @@ header {
     .timer {
       height: 200px;
     }
-  }
+  } */
