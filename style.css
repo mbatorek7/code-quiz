@@ -39,3 +39,26 @@ header {
     text-align: center;
     list-style-position: inside;
   }
+
+  .timer {
+    height: 240px;
+    padding: 10px;
+    background: #13293d;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .timer-text {
+    padding: 55px;
+  }
+
+
+  @media screen and (max-width: 504px) {
+    .large-font {
+      font-size: 2em;
+    }
+  
+    .timer {
+      height: 200px;
+    }
+  }
