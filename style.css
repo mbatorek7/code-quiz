@@ -3,21 +3,21 @@
 }
 
 header {
-    padding: 25px;
+    padding: 15px;
     text-align: center;
     background: #001aff;
     color: #fff;
-    border-bottom:30px #001aff;
-  }
+    border-bottom:20px #001aff;
+}
 
-  /* coding quiz header */
-  .large-font {
+/* coding quiz header */
+.large-font {
     font-size: 3.5em;
     text-align:center;
-  }
+}
 
-  /* styling for start button */
-  button {
+/* styling for start button */
+.start-button {
     background: radial-gradient(circle, rgb(41, 252, 252) 0%, rgba(59, 95, 255, 0.954) 100%);
     border-radius: 8px;
     color: #13293d;
@@ -32,32 +32,51 @@ header {
     transition-property: background-color;
     transition-timing-function: linear;
     margin-top: 0.6em;
-  }
+}
 
-  /* styling for coding rules list */
-  .code-rules {
+/* styling for buttons */
+#option0, #option1, #option2, #option3 {
+  /* button size */
+  height: 100px;
+  width: 220px;
+  /* create space between each button */
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #0099CC; /* Text color */
+  background-color: transparent; /* Remove background color */
+  border: 5px solid #0099CC; /* Border thickness, line style, and color */
+  border-radius: 5px; /* Adds curve to border corners */
+  text-transform: uppercase; /* Make letters uppercase */
+} 
+
+/* styling for coding rules list */
+.code-rules {
     text-align: center;
     list-style-position: inside;
-  }
+}
 
-  .timer {
-    height: 150px;
+.timer {
+    height: 90px;
     background: #13293d;
     color: #fff;
     text-align: center;
-  }
+}
   
-  .timer-text {
-    padding: 20px;
-  }
+.timer-text {
+    padding: 10px;
+    font-size: 10px;
+}
 
+/* center question header */
+h2 {
+  text-align: center;
+}
 
-  /* @media screen and (max-width: 504px) {
-    .large-font {
-      font-size: 2em;
-    }
-  
-    .timer {
-      height: 200px;
-    }
-  } */
+/* center buttons */
+.flex-parent {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: center;
+}

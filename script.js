@@ -2,52 +2,49 @@
 var questions = [
   {
     question: "What does HTML stand for?",
-    answers: {
-      a: 'Hyper Text Markup Language',
-      b: 'Hyper Trainer Marking Language',
-      c: 'Hyper Text Marketing Language',
-      d: 'Hyper Text Markup Leveler'
-    },
-    correctAnswer: 'a'
-  },
-  {
-    question: "<h1>Text</h1> is the correct way of making a header in HTML.",
-    answers: {
-      a: 'True',
-      b: 'False'
-    },
-    correctAnswer: 'a'
+    answers: [
+      "Hyper Text Markup Language",
+      "Hyper Trainer Marking Language",
+      "Hyper Text Marketing Language",
+      "Hyper Text Markup Leveler"
+    ],
+    correctAnswer: "Hyper Text Markup Language"
   },
   {
     question: "Which of the following is the correct way to use the standard namespace in C++?",
-    answers: {
-      a: 'Using namespace standard;',
-      b: 'Using standard namespace;',
-      c: 'Using namespace std;',
-      d: 'Standard namespace used;'
-    },
-    correctAnswer: 'c'
+    answers: [
+      "Using namespace standard;",
+      "Using standard namespace;",
+      "Using namespace std;",
+      "Standard namespace used;"
+    ],
+    correctAnswer: "Using namespace std;"
   }, 
   {
     question: "Which of these is NOT a programming language",
-    answers: {
-      a: 'Rust',
-      b: 'Ruby',
-      c: 'MATLAB',
-      d: 'Pearl'
-    },
-    correctAnswer: 'd'
+    answers: [
+      "Rust",
+      "Ruby",
+      "MATLAB",
+      "Pearl"
+    ],
+    correctAnswer: "Pearl"
   }
 ];
 
-//variables for rest of page
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
+var questionElement = document.getElementById("question");
+var option0El = document.getElementById("option0");
+var option1El = document.getElementById("option1");
+var option2El = document.getElementById("option2");
+var option3El = document.getElementById("option3");
 
 var timer;
 var timerCount;
 var isWin = false;
-var correctAnswers = 0;
+var currentQuestion = 0;
+var score = 0;
 
 // The startGame function is called when the start button is clicked
 function startGame() {
@@ -56,6 +53,15 @@ function startGame() {
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
   startTimer()
+  displayQuestions()
+}
+
+function displayQuestions() {
+  questionElement.textContent = questions[currentQuestion].question;
+  option0El.textContent = questions[currentQuestion].answers[0];
+  option1El.textContent = questions[currentQuestion].answers[1];
+  option2El.textContent = questions[currentQuestion].answers[2];
+  option3El.textContent = questions[currentQuestion].answers[3];
 }
 
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
@@ -69,7 +75,7 @@ function startTimer() {
       if (isWin && timerCount > 0) {
         // Clears interval and stops timer
         clearInterval(timer);
-      }
+      } 
     }
     // Tests if time has run out
     if (timerCount === 0) {
@@ -79,5 +85,27 @@ function startTimer() {
   }, 1000);
 }
 
+//check user's answer
+function checkAnswer(event) {
+  var userInput = event.target.value;
+  //if they choose the correct answer
+  if (userInput == questions[currentQuestion].correctAnswer) {
+    //add to score
+    score += 5;
+  } else {
+    //reduce time for wrong answer
+    timerCount -= 5;
+  }
+  currentQuestion++;
+  displayQuestions()
+}
+
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
+
+//attach event listner to each option
+option0El.addEventListener("click", checkAnswer);
+option1El.addEventListener("click", checkAnswer);
+option2El.addEventListener("click", checkAnswer);
+option3El.addEventListener("click", checkAnswer);
+
