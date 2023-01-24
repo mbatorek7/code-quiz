@@ -116,11 +116,15 @@ function checkAnswer(event) {
   }
   currentQuestion++;
 
-    // Tests if time has run out or quiz is completed
-    if (currentQuestion == questions.length - 1 || timerCount == 0) {
-      // Clears interval
-      clearInterval(timer);
-    }
+  // Tests if time has run out or quiz is completed
+  if (currentQuestion == questions.length || timerCount == 0) {
+    // Clears interval
+    clearInterval(timer);
+    isFinished = true;
+    scoreArray = JSON.parse(localStorage.getItem("highScores"))||[];
+    scoreArray.push(score);
+    localStorage.setItem("highScores", JSON.stringify(scoreArray)) ;
+  }
 
   displayQuestions()
   isGameOver()
