@@ -29,8 +29,30 @@ var questions = [
       "Pearl"
     ],
     correctAnswer: "Pearl"
+  }, 
+  {
+    question: "Which of the following are logical operators?",
+    answers: [
+      "&&, ||, !=",
+      "||, !, ==",
+      "!, ||, &&",
+      "||, &&"
+    ],
+    correctAnswer: "!, ||, &&"
+  }, 
+  {
+    question: "What value would the variable y be equal to? int y = 3 + 5 / 2;",
+    answers: [
+      "2",
+      "4",
+      "5",
+      "6"
+    ],
+    correctAnswer: "5"
   }
 ];
+
+var scoreArray = [];
 
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
@@ -42,13 +64,13 @@ var option3El = document.getElementById("option3");
 
 var timer;
 var timerCount;
-var isWin = false;
+var isFinished = false;
 var currentQuestion = 0;
 var score = 0;
 
 // The startGame function is called when the start button is clicked
 function startGame() {
-  isWin = false;
+  isFinished = false;
   timerCount = 55;
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
@@ -72,21 +94,17 @@ function startTimer() {
     timerElement.textContent = timerCount;
     if (timerCount >= 0) {
       // Tests if win condition is met
-      if (isWin && timerCount > 0) {
+      if (isFinished) {
         // Clears interval and stops timer
         clearInterval(timer);
       } 
-    }
-    // Tests if time has run out
-    if (timerCount === 0) {
-      // Clears interval
-      clearInterval(timer);
     }
   }, 1000);
 }
 
 //check user's answer
 function checkAnswer(event) {
+  //look where user clicks
   var userInput = event.target.value;
   //if they choose the correct answer
   if (userInput == questions[currentQuestion].correctAnswer) {
@@ -97,15 +115,31 @@ function checkAnswer(event) {
     timerCount -= 5;
   }
   currentQuestion++;
+
+    // Tests if time has run out or quiz is completed
+    if (currentQuestion == questions.length - 1 || timerCount == 0) {
+      // Clears interval
+      clearInterval(timer);
+    }
+
   displayQuestions()
+  isGameOver()
+}
+
+function isGameOver() {
+  if (currentQuestion == questions.length - 1 || timerCount == 0) {
+    isFinished = true;
+    scoreArray = JSON.parse(localStorage.getItem("highScores"));
+    scoreArray.push(score);
+    localStorage.setItem("highScores", JSON.stringify(scoreArray)) ;
+  }
 }
 
 // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startGame);
 
-//attach event listner to each option
+//attach event listener to each option
 option0El.addEventListener("click", checkAnswer);
 option1El.addEventListener("click", checkAnswer);
 option2El.addEventListener("click", checkAnswer);
 option3El.addEventListener("click", checkAnswer);
-
