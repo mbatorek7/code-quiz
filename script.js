@@ -52,6 +52,7 @@ var questions = [
   }
 ];
 
+//create empty array for all high scores
 var scoreArray = [];
 
 var timerElement = document.querySelector(".timer-count");
@@ -61,6 +62,8 @@ var option0El = document.getElementById("option0");
 var option1El = document.getElementById("option1");
 var option2El = document.getElementById("option2");
 var option3El = document.getElementById("option3");
+var highScoreEl = document.getElementById("high-score-title");
+var highScoreListEl = document.getElementById("highScores");
 
 var timer;
 var timerCount;
@@ -76,6 +79,7 @@ function startGame() {
   startButton.disabled = true;
   startTimer()
   displayQuestions()
+  highScoreEl.style.display = 'none';
 }
 
 function displayQuestions() {
@@ -105,7 +109,7 @@ function startTimer() {
 //check user's answer
 function checkAnswer(event) {
   //look where user clicks
-  var userInput = event.target.value;
+  var userInput = event.target.textContent;
   //if they choose the correct answer
   if (userInput == questions[currentQuestion].correctAnswer) {
     //add to score
@@ -114,28 +118,35 @@ function checkAnswer(event) {
     //reduce time for wrong answer
     timerCount -= 5;
   }
-  currentQuestion++;
-
-  // Tests if time has run out or quiz is completed
-  if (currentQuestion == questions.length || timerCount == 0) {
-    // Clears interval
-    clearInterval(timer);
-    isFinished = true;
-    scoreArray = JSON.parse(localStorage.getItem("highScores"))||[];
-    scoreArray.push(score);
-    localStorage.setItem("highScores", JSON.stringify(scoreArray)) ;
-  }
-
-  displayQuestions()
   isGameOver()
+  currentQuestion++;
+  displayQuestions()
 }
 
 function isGameOver() {
   if (currentQuestion == questions.length - 1 || timerCount == 0) {
     isFinished = true;
-    scoreArray = JSON.parse(localStorage.getItem("highScores"));
+    scoreArray = JSON.parse(localStorage.getItem("highScores"))||[];
     scoreArray.push(score);
-    localStorage.setItem("highScores", JSON.stringify(scoreArray)) ;
+    localStorage.setItem("highScores", JSON.stringify(scoreArray));
+    questionElement.style.display = 'none';
+    option0El.style.display = 'none';
+    option1El.style.display = 'none';
+    option2El.style.display = 'none';
+    option3El.style.display = 'none';
+    highScoreEl.style.display =  'flex';
+    sortScores()
+  }
+}
+
+function sortScores() {
+  scoreArray.sort(function (a,b) {
+    return b-a;
+  })
+  for(var i = 0; i < 5; i++) {
+    var newScore = document.createElement("li");
+    newScore.textContent = scoreArray[i];
+    highScoreListEl.append(newScore);
   }
 }
 
