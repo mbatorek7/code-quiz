@@ -19,3 +19,13 @@
 * THEN the game is over
 * WHEN the game is over
 * THEN I can save my initials and score
+
+## Description
+
+This application is a computer programming quiz. You must answer all the questions with the given amount of time. Any wrong answer will reduce the amount of time you have left. Your final score depends on the number of questions you answer correctly and how much time you have left. At the end, your final score will be saved and added to list of high scores.
+
+Check out the live site here!
+
+<p align="center">
+    <a href="https://mbatorek7.github.io/hw4-code-quiz/"><img src="https://img.shields.io/badge/-See Live Site-success?style=for-the-badge"  alt="Live Site" ></a>
+</p>

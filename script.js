@@ -118,35 +118,48 @@ function checkAnswer(event) {
     //reduce time for wrong answer
     timerCount -= 5;
   }
+  //check if game is over first
   isGameOver()
+  //move onto next question if game isn't over
   currentQuestion++;
+  //display questions
   displayQuestions()
 }
 
 function isGameOver() {
   if (currentQuestion == questions.length - 1 || timerCount == 0) {
+    //game is over
     isFinished = true;
+    score += timerCount;
+    //get item from scoreArray and push new score in
     scoreArray = JSON.parse(localStorage.getItem("highScores"))||[];
     scoreArray.push(score);
+    //add score to local storage
     localStorage.setItem("highScores", JSON.stringify(scoreArray));
+    //remove question and buttons from scren
     questionElement.style.display = 'none';
     option0El.style.display = 'none';
     option1El.style.display = 'none';
     option2El.style.display = 'none';
     option3El.style.display = 'none';
-    highScoreEl.style.display =  'flex';
-    sortScores()
+    //display high score list
+    highScoreEl.style.display =  'block';
+    displayScores()
   }
 }
 
-function sortScores() {
+function displayScores() {
   scoreArray.sort(function (a,b) {
     return b-a;
   })
+  var name = prompt('You got a new score! Enter name:');
   for(var i = 0; i < 5; i++) {
     var newScore = document.createElement("li");
+    //styling the score list
+    newScore.setAttribute("style", "list-style-type: upper-roman; list-style-position: inside;");
     newScore.textContent = scoreArray[i];
-    highScoreListEl.append(newScore);
+    highScoreListEl.append(name, newScore);
+    highScoreListEl.setAttribute("style", "text-align: center;");
   }
 }
 
