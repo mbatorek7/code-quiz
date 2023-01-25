@@ -97,7 +97,7 @@ function startTimer() {
     timerCount--;
     timerElement.textContent = timerCount;
     if (timerCount >= 0) {
-      // Tests if win condition is met
+      // Tests if game over is met
       if (isFinished) {
         // Clears interval and stops timer
         clearInterval(timer);
@@ -131,9 +131,15 @@ function isGameOver() {
     //game is over
     isFinished = true;
     score += timerCount;
+    //obtain user name and put into an object
+    var name = prompt('You got a new score! Enter name:');
+    var userScore = {
+      userName:name, userPoints:score
+    };
+
     //get item from scoreArray and push new score in
     scoreArray = JSON.parse(localStorage.getItem("highScores"))||[];
-    scoreArray.push(score);
+    scoreArray.push(userScore);
     //add score to local storage
     localStorage.setItem("highScores", JSON.stringify(scoreArray));
     //remove question and buttons from scren
@@ -152,13 +158,12 @@ function displayScores() {
   scoreArray.sort(function (a,b) {
     return b-a;
   })
-  var name = prompt('You got a new score! Enter name:');
   for(var i = 0; i < 5; i++) {
     var newScore = document.createElement("li");
     //styling the score list
     newScore.setAttribute("style", "list-style-type: upper-roman; list-style-position: inside;");
-    newScore.textContent = scoreArray[i];
-    highScoreListEl.append(name, newScore);
+    newScore.textContent = scoreArray[i].userName + ' ' + scoreArray[i].userPoints;
+    highScoreListEl.append(newScore);
     highScoreListEl.setAttribute("style", "text-align: center;");
   }
 }

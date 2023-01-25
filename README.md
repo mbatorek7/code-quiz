@@ -24,8 +24,16 @@
 
 This application is a computer programming quiz. You must answer all the questions with the given amount of time. Any wrong answer will reduce the amount of time you have left. Your final score depends on the number of questions you answer correctly and how much time you have left. At the end, your final score will be saved and added to list of high scores.
 
-Check out the live site here!
-
 <p align="center">
     <a href="https://mbatorek7.github.io/hw4-code-quiz/"><img src="https://img.shields.io/badge/-See Live Site-success?style=for-the-badge"  alt="Live Site" ></a>
 </p>
+
+### Screenshots
+Below is the starter page when the application is first loaded.
+![Final deployment of the web application.](./assets/images/welcome.png)
+
+This is what the application looks like when the quiz begins.
+![Final deployment of the web application.](./assets/images/questions.png)
+
+This is the final page that displays the high scores.
+![Final deployment of the web application.](./assets/images/high-score.png)
